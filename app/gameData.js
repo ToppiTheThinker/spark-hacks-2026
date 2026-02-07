@@ -83,7 +83,7 @@ export const DIALOGUE = {
     ],
     
     news: {
-      headline: "BREAKING NEWS: AI causing major increase in Water Scarcity",
+      headline: "BREAKING NEWS: AI causing Water Scarcity",
       content: "\"Cooling is central to data-center operations. Servers generate significant heat as they process data, and most facilities rely on water — directly for cooling or indirectly through electricity use — to maintain safe operating temperatures. The International Energy Agency (IEA) estimates that global data-center water use is roughly 560 billion liters per year, potentially rising to 1.2 trillion liters by 2030, equivalent to the annual consumption of more than four million U.S. households. This scale of demand has made water availability a critical operational — and, increasingly, reputational — issue. Hotter and drier conditions could limit supply in key regions, while communities and regulators are placing greater scrutiny on industrial water use.5 For data-center operators, managing consumption is not only an environmental priority but also a business necessity\"",
       summary: "The International Energy Agency (IEA) estimates that global data-center water use is roughly 560 billion liters per year, potentially rising to 1.2 trillion liters by 2030, equivalent to the annual consumption of more than four million U.S. households. This scale of demand has made water availability a critical operational — and, increasingly, reputational — issue."
     },
