@@ -13,7 +13,7 @@ export const DIALOGUE = {
     
     aiMessages: {
       intro: [
-        "Welcome to your first day as an assistant! My name is spArkI and I'm your assigned AI chatbot.😊",
+        "Welcome to your first day as an assistant! My name is Spark.AI and I'm your assigned AI chatbot.😊",
         "I'm here to help you with any tasks you need assistance with. Just let me know if you'd like me to handle anything!"
       ]
     },

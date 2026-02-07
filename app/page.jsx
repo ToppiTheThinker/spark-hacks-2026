@@ -317,7 +317,7 @@ export default function Home() {
             <div className="w-14 h-14 rounded-full bg-white flex-shrink-0 flex items-center justify-center overflow-hidden">
               <Image 
                 src="/flame.png" 
-                alt="spArkI" 
+                alt="Spark.AI" 
                 width={64}
                 height={64}
                 className="object-cover"
@@ -325,7 +325,7 @@ export default function Home() {
             </div>
             {/* Name and Description */}
             <div className="flex-1">
-              <h2 className="text-2xl font-bold text-white">spArkI</h2>
+              <h2 className="text-2xl font-bold text-white">Spark.AI</h2>
               <p className="text-blue-100 text-sm">always happy to help</p>
             </div>
           </div>
@@ -480,7 +480,7 @@ export default function Home() {
                     <div className="flex-1 flex flex-col items-center justify-center">
                       <div className="text-sm text-gray-500 mb-4">Task {completedTasks.length}/{currentDayData?.tasks.length || 0}</div>
                       <p className="text-black text-lg mb-6">{currentTask.prompt}</p>
-                      <p className="text-gray-600 text-sm italic">Choose an option in the spArkI chat!</p>
+                      <p className="text-gray-600 text-sm italic">Choose an option in the Spark.AI chat!</p>
                     </div>
                   )}
 
