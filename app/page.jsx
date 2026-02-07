@@ -173,7 +173,7 @@ export default function Home() {
     } else {
       // All tasks done for this day, check for promotions
       let promoted = false;
-      if (position === 1 && (aiLevel >= 5 || day >= 5)) {
+      if (position === 1 && (aiLevel >= 5 || day >= 6)) {
         setPosition(2);
         promoted = true;
       } else if (position === 0 && (aiLevel >= 3 || day >= 3)) {
