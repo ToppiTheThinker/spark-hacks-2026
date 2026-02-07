@@ -187,6 +187,7 @@ export default function Home() {
       setCompletedTasks([]);
       setShowNewsSummary(false);
       setShowSummaryChoice(false);
+      setShowSparky(false);
       setStage('start');
     } else {
       // All days complete
@@ -306,10 +307,18 @@ export default function Home() {
         </div>
         ) : (
         /* Placeholder Window when Sparky is hidden */
-        <div className="w-1/3 flex flex-col rounded-3xl p-6 m-6 bg-gray-100">
-          <div className="flex-1 flex items-center justify-center">
-            <p className="text-gray-400 text-center">Window Placeholder</p>
+        <div className="w-1/3 flex flex-col rounded-3xl p-6 m-6 relative overflow-hidden" style={{ backgroundColor: '#BBBEE8' }}>
+          <div className="flex-1 flex items-center justify-center" style={{ marginTop: '-240px' }}>
+            {/* Window */}
+            <div className="w-64 h-80 rounded-2xl border-8 border-white relative" style={{ backgroundColor: '#ADDCFF' }}>
+              {/* Horizontal divider line across the middle */}
+              <div className="absolute left-0 right-0 top-1/2 h-2 bg-white transform -translate-y-1/2"></div>
+              {/* Vertical divider line down the middle */}
+              <div className="absolute top-0 bottom-0 left-1/2 w-2 bg-white transform -translate-x-1/2"></div>
+            </div>
           </div>
+          {/* Desk */}
+          <div className="absolute bottom-0 left-0 right-0 w-full h-48" style={{ backgroundColor: '#EEE2DF', borderRadius: '1.5rem 1.5rem 1.5rem 1.5rem' }}></div>
         </div>
         )}
         

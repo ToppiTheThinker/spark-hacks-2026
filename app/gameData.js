@@ -157,9 +157,9 @@ export const DIALOGUE = {
     ],
     
     news: {
-      headline: "Companies Report 40% Productivity Increase with AI Assistants",
-      content: "Major corporations across industries are reporting significant productivity gains after implementing AI assistant tools for their workforce. The technology has transformed how employees handle routine tasks, from scheduling to document preparation. However, some managers express concerns about over-reliance and the potential loss of critical thinking skills. Studies show that while AI can complete tasks faster, human oversight remains essential for quality and context-appropriate decisions.",
-      summary: "AI assistants are boosting workplace productivity by 40%, though experts warn about maintaining human judgment and oversight in decision-making processes."
+      headline: "NEWS IDK",
+      content: "CONTENT HERE",
+      summary: "Summary !!"
     },
     
     ending: {
