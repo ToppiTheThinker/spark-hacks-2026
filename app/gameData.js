@@ -163,10 +163,9 @@ export const DIALOGUE = {
     },
     
     ending: {
-      noAI: "Congratulations! Your dedication and personal touch have earned you a promotion to Administrative Assistant!",
-      lowAI: "Great work! Your balanced approach has earned you a promotion to Administrative Assistant!",
-      highAI: "You've completed your training! You've been promoted to Administrative Assistant. Remember to bring your own skills to the role!",
-      promotion: true
+      noAI: "You built genuine connections!",
+      lowAI: "Balanced approach today.",
+      highAI: "AI sure is handy!",
     }
   }
 };

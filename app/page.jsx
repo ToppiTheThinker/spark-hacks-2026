@@ -224,8 +224,14 @@ export default function Home() {
           {/* Sparky Banner */}
           <div className="absolute -top-3 left-0 right-0 bg-blue-500 rounded-3xl py-4 px-6 shadow-lg z-10 flex items-center gap-4">
             {/* Profile Picture */}
-            <div className="w-14 h-14 rounded-full bg-white flex-shrink-0 flex items-center justify-center">
-              <div className="w-12 h-12 rounded-full bg-blue-300"></div>
+            <div className="w-14 h-14 rounded-full bg-white flex-shrink-0 flex items-center justify-center overflow-hidden">
+              <Image 
+                src="/flame.png" 
+                alt="spArkI" 
+                width={64}
+                height={64}
+                className="object-cover"
+              />
             </div>
             {/* Name and Description */}
             <div className="flex-1">
