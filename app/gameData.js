@@ -4,7 +4,7 @@
 
 
 export const GAME_CONFIG = {
-  totalDays: 5
+  totalDays: 6
 };
 
 export const DIALOGUE = {
