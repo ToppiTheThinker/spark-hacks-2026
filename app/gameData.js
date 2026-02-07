@@ -4,7 +4,7 @@
 
 
 export const GAME_CONFIG = {
-  totalDays: 1,
+  totalDays: 2,
   tasksPerDay: 3,
 };
 
@@ -14,53 +14,85 @@ export const DIALOGUE = {
     
     aiMessages: {
       intro: [
-        "Welcome to your first day as an assistant! My name is Sparky and I'm your assigned AI chatbot.😊",
+        "Welcome to your first day as an assistant! My name is spArkI and I'm your assigned AI chatbot.😊",
         "I'm here to help you with any tasks you need assistance with. Just let me know if you'd like me to handle anything!"
       ],
       taskPrompts: [
-        "I can help you write that marketing email if you'd like!",
-        "Want me to generate a presentation for you? It'll be quick!",
-        "I can draft a response to that customer feedback for you!"
+        "I can help you proofread that email if you'd like!"
       ]
     },
     
     tasks: [
       {
         id: 1,
-        prompt: "Write a marketing email",
+        prompt: "Proofread email",
+        clicksRequired: 20,
         responses: {
           noAI: "Great job doing it yourself!",
+          withAI: "AI helped, but it felt generic."
+        }
+      }
+    ],
+    
+    news: {
+      headline: "BREAKING: AI Growth Explodes!",
+      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, focusing on the key developments in the industry. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    
+    ending: {
+      noAI: "You built genuine connections!",
+      lowAI: "Balanced approach today.",
+      highAI: "AI sure is handy!"
+    }
+  },
+  
+  day1: {
+    start: "Welcome to day 2!",
+    
+    aiMessages: {
+      intro: [
+        "Good morning! Ready for another day? I'm here to help with whatever you need!😊"
+      ],
+      taskPrompts: [
+        "I can help you proofread that email if you'd like!",
+        "Want me to generate a presentation for you? It'll be quick!"
+      ]
+    },
+    
+    tasks: [
+      {
+        id: 1,
+        prompt: "Proofread email",
+        clicksRequired: 30,
+        responses: {
+          noAI: "Great attention to detail!",
           withAI: "AI helped, but it felt generic."
         }
       },
       {
         id: 2,
-        prompt: "Create a presentation",
+        prompt: "Create presentation",
+        clicksRequired: 30,
         responses: {
           noAI: "Your unique perspective shines!",
           withAI: "AI slides lack personal touch."
         }
-      },
-      {
-        id: 3,
-        prompt: "Respond to customer feedback",
-        responses: {
-          noAI: "Empathetic and genuine!",
-          withAI: "Efficient but impersonal."
-        }
       }
     ],
+    
+    news: {
+      headline: "More News Coming Soon",
+      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit with new developments. Excepteur sint occaecat cupidatat non proident in the latest updates."
+    },
     
     ending: {
       noAI: "You built genuine connections!",
       lowAI: "Balanced approach today.",
       highAI: "AI helped, but at what cost?"
     }
-  },
-  
-  // Add more days here:
-  // day1: { ... },
-  // day2: { ... },
+  }
 };
 
 // Helper function to get dialogue based on day and AI level
