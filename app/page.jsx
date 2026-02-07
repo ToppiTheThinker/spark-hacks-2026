@@ -148,7 +148,7 @@ export default function Home() {
   const handleClick = () => {
     // Prevent clicking if already at or over the required amount
     if (clickCount >= currentTask.clicksRequired) return;
-    
+     
     const clickValue = usedAIForTask ? 5 : 1;
     const newClickCount = clickCount + clickValue;
     
@@ -516,9 +516,9 @@ export default function Home() {
       </div>
       
       {/* Debugging Bar */}
-      {/* <div className="mx-6 mb-6 p-6 bg-white rounded-3xl">
+      <div className="mx-6 mb-6 p-6 bg-white rounded-3xl">
         <p className="text-black">Debugging: Day {day} | Stage: {stage} | AI Level: {aiLevel}</p>
-      </div> */}
+      </div>
     </div>
   );
 }
