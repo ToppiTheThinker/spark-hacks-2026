@@ -118,7 +118,7 @@ export default function Home() {
         setTimeout(() => {
           setDisplayedMessages(prev => [...prev, newMessage]);
           setShowChoices(true);
-        }, 1500);
+        }, 750);
       }
     }
   }, [stage, taskIndex]);
