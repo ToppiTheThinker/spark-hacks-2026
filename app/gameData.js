@@ -83,9 +83,9 @@ export const DIALOGUE = {
     ],
     
     news: {
-      headline: "BREAKING: AI Growth Explodes!",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, focusing on the key developments in the industry. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      headline: "BREAKING NEWS: AI causing major increase in Water Scarcity",
+      content: "\"Cooling is central to data-center operations. Servers generate significant heat as they process data, and most facilities rely on water — directly for cooling or indirectly through electricity use — to maintain safe operating temperatures. The International Energy Agency (IEA) estimates that global data-center water use is roughly 560 billion liters per year, potentially rising to 1.2 trillion liters by 2030, equivalent to the annual consumption of more than four million U.S. households. This scale of demand has made water availability a critical operational — and, increasingly, reputational — issue. Hotter and drier conditions could limit supply in key regions, while communities and regulators are placing greater scrutiny on industrial water use.5 For data-center operators, managing consumption is not only an environmental priority but also a business necessity\"",
+      summary: "The International Energy Agency (IEA) estimates that global data-center water use is roughly 560 billion liters per year, potentially rising to 1.2 trillion liters by 2030, equivalent to the annual consumption of more than four million U.S. households. This scale of demand has made water availability a critical operational — and, increasingly, reputational — issue."
     },
     
     ending: {
@@ -169,10 +169,10 @@ export const DIALOGUE = {
       },
     ],
     
-    news: {
-      headline: "75% of workers admit to relying on AI for work.",
-      content: "CONTENT HERE",
-      summary: "summary here"
+    news:{
+      headline: "MIT Study shows AI causes decrease in cognitive activity.",
+      content: "\"The study by MIT’s Media Lab tested the cognitive functions of different groups of students divided up according to how much they used AI tools like ChatGPT to accomplish key tasks — such as writing essays — over a period of several months. The study looked to find out how people’s brains responded to using AI tools over time. And according to the study, the answer to that question is: not great. Participants who exclusively used the AI to help write essays showed weaker brain connectivity, lower memory retention and a fading sense of ownership over their work. Basically, their brains got lazy. And even when they stopped using AI tools later on, the effects lingered.\"",
+      summary: "The study by MIT’s Media Lab tested cognitive functions of different groups of students divided up according to how much they used AI tools like ChatGPT. Participants in the study who exclusively used AI to help write essays showed weaker brain connectivity, lower memory retention and a fading sense of ownership over their work."
     },
     
     ending: {
@@ -223,9 +223,9 @@ export const DIALOGUE = {
     ],
     
     news: {
-      headline: "MIT Study suggests that increase use in AI causes long term decrease in cognitive activity",
-      content: "CONTENT HERE",
-      summary: "summary here"
+      headline: "Telling ChatGPT ‘Please’ and ‘Thank You’ Costs OpenAI Millions, CEO Claims",
+      content: "\"Being polite to artificial intelligence can be quite expensive. OpenAI CEO Sam Altman said on social media last week that saying \"please\" and \"thank you\" to ChatGPT has cost the company quite a bit of money. Altman responded to a user on X, the platform formerly known as Twitter, who was curious how much money OpenAI has lost in electricity costs from people showing good manners to their AI models. \"Tens of millions of dollars well spent--you never know,\" was the CEO's response.” Generative AI is widely seen as a heavy consumer of energy, particularly when it comes to training models.\"",
+      summary: "OpenAI CEO Sam Altman reveals that expressing gratitude to or showing consideration for ChatGPT has cost the company “tens of millions of dollars”. Because ChatGPT is a large language model (LLM), even the smallest prompts consume energy."
     },
     
     ending: {

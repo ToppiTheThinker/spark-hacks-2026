@@ -51,22 +51,22 @@ export default function Home() {
     if (aiLevel === 0) {
       return {
         title: 'Congratulations!',
-        message: 'Thanks to your hard work you have been promoted to CEO!'
+        message: 'Thanks to your hard work you have become one of the company\'s elite employees! Your hard work and passion for the company makes you well respected. If others succeed to follow your path negative outcomes could be prevented'
       };
     } else if (aiLevel < 5) {
       return {
         title: 'Not Bad',
-        message: 'You did okay-lower end'
+        message: 'Your efforts were acknowledged and you have become a source of guidance in the office, as long as you continue on this path you will continue to develop professionally. '
       };
     } else if (aiLevel < 10) {
       return {
         title: 'Could Be Better',
-        message: 'You did okay higher end'
+        message: 'You had an attempt however some decisons hindered your potential success. Some crucial changes could lead to a better outcome.'
       };
     } else {
       return {
         title: 'Game Over',
-        message: 'You lose'
+        message: 'Management had decided that your actions no longer reflect the candidate they chose for this role. Many poor choices have led to these consequences. Do better.'
       };
     }
   };
