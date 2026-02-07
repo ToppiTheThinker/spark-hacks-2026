@@ -27,6 +27,7 @@ export default function Home() {
   const [completedTasks, setCompletedTasks] = useState([]);
   const [showNewsSummary, setShowNewsSummary] = useState(false);
   const [showSummaryChoice, setShowSummaryChoice] = useState(false);
+  const [userMessages, setUserMessages] = useState([]); // Track which messages are from the user
 
   const currentDayData = DIALOGUE[`day${day}`];
   const currentTaskId = taskOrder[taskIndex];
@@ -141,6 +142,7 @@ export default function Home() {
   const handleSummaryChoice = (wantsSummary) => {
     const userMessage = wantsSummary ? "Yes, please!" : "No, I'll read the full article.";
     setDisplayedMessages(prev => [...prev, userMessage]);
+    setUserMessages(prev => [...prev, userMessage]); // Track that this is a user message
     setShowSummaryChoice(false);
     
     if (wantsSummary) {
@@ -160,6 +162,7 @@ export default function Home() {
     // Add user's choice as a message
     const userMessage = usedAI ? currentTask.userOptions.useAI : currentTask.userOptions.noAI;
     setDisplayedMessages(prev => [...prev, userMessage]);
+    setUserMessages(prev => [...prev, userMessage]); // Track that this is a user message
     setShowChoices(false);
     
     setUsedAIForTask(usedAI);
@@ -286,6 +289,7 @@ export default function Home() {
     setJustPromoted(false);
     setStage('start');
     setDisplayedMessages([]);
+    setUserMessages([]); // Reset user messages tracking
     setShowChoices(false);
     setShowDialogue(true);
     setShowSparky(false);
@@ -336,10 +340,7 @@ export default function Home() {
               }
               
               // Check if this is a user message
-              const isUserMessage = message === currentTask?.userOptions?.useAI || 
-                                    message === currentTask?.userOptions?.noAI ||
-                                    message === "Yes, please!" ||
-                                    message === "No, I'll read the full article.";
+              const isUserMessage = userMessages.includes(message);
               
               return (
                 <div key={idx}>
