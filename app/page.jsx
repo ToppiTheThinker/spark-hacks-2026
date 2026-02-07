@@ -562,7 +562,7 @@ export default function Home() {
                       </h2>
                       <p className="text-black text-lg mb-6 text-center">
                         {position === 2 
-                          ? 'Reprimanded by supervisor for sumbmitting data that doesn\'t exist.' 
+                          ? 'Reprimanded by supervisor for submitting data that doesn\'t exist.' 
                           : 'Your manager applauds your work ethic!'}
                       </p>
                       <button onClick={handleSupervisorSceneNext} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl">
