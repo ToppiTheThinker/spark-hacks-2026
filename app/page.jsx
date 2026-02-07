@@ -479,7 +479,7 @@ export default function Home() {
                     <div className="flex-1 flex flex-col items-center justify-center">
                       <div className="text-sm text-gray-500 mb-4">Task {completedTasks.length}/{currentDayData?.tasks.length || 0}</div>
                       <p className="text-black text-lg mb-6">{currentTask.prompt}</p>
-                      <p className="text-gray-600 text-sm italic">Choose an option in the spArkI chat →</p>
+                      <p className="text-gray-600 text-sm italic">Choose an option in the spArkI chat!</p>
                     </div>
                   )}
 
