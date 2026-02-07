@@ -171,7 +171,7 @@ export default function Home() {
       setStage('task-selection');
     } else {
       // All tasks done for this day, check for promotions
-      if (position === 1 && (aiLevel >= 5 || day >= 5)) {
+      if (position === 1 && (aiLevel >= 5 || day >= 6)) {
         setPosition(2);
       } else if (position === 0 && (aiLevel >= 3 || day >= 3)) {
         setPosition(1);

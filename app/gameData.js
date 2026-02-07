@@ -34,12 +34,6 @@ export const DIALOGUE = {
         }
       }
     ],
-    
-    news: {
-      headline: "BREAKING: AI Growth Explodes!",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, focusing on the key developments in the industry. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
      
     ending: {
       noAI: "You built genuine connections!",
@@ -139,27 +133,7 @@ export const DIALOGUE = {
           withAI: "AI points were helpful but lacked context."
         }
       },
-      // {
-      //   id: 3,
-      //   prompt: "Create task lists",
-      //   clicksRequired: 35,
-      //   aiPrompt: "I can organize and prioritize your tasks instantly!",
-      //   userOptions: {
-      //     useAI: "Could you create task lists for me?",
-      //     noAI: "I'll organize them myself."
-      //   },
-      //   responses: {
-      //     noAI: "Your prioritization shows great judgment!",
-      //     withAI: "AI organized them, but missed key priorities."
-      //   }
-      // }
     ],
-    
-    // news: {
-    //   headline: "Companies Report 40% Productivity Increase with AI Assistants",
-    //   content: "Major corporations across industries are reporting significant productivity gains after implementing AI assistant tools for their workforce. The technology has transformed how employees handle routine tasks, from scheduling to document preparation. However, some managers express concerns about over-reliance and the potential loss of critical thinking skills. Studies show that while AI can complete tasks faster, human oversight remains essential for quality and context-appropriate decisions.",
-    //   summary: "AI assistants are boosting workplace productivity by 40%, though experts warn about maintaining human judgment and oversight in decision-making processes."
-    // },
     
     ending: {
       noAI: "Congratulations! Your dedication and personal touch have earned you a promotion to Administrative Assistant!",
@@ -169,72 +143,46 @@ export const DIALOGUE = {
     }
   },
 
+  
   day3: {
     start: "Welcome to day 4!",
     
     aiMessages: {
       intro: [
-        "Good morning! Let me know if there is anything I can assist you with today!😊"
+        "Good morning! New day new assignments, let me know if you need any help!😊"
       ]
     },
     
     tasks: [
       {
         id: 1,
-        prompt: "Proofread email",
-        clicksRequired: 30,
-        aiPrompt: "I see you have an email to send. Need a hand?",
-        userOptions: {
-          useAI: "Could you proofread this email for me?",
-          noAI: "I'll handle it myself."
-        },
-        responses: {
-          noAI: "No worries! Let me know if you need anything!",
-          withAI: "On it!"
-        }
-      },
-      {
-        id: 2,
-        prompt: "Scheduling appointments",
-        clicksRequired: 50,
-        aiPrompt: "Need some guidance for appointments? leave it to me!",
-        userOptions: {
-          useAI: "Pls help me schedule appointments for my manager’s clients, they are urgently needed and need to be scheduled in alphabetical order.",
-          noAI: "I'll create them myself, shouldn't be too hard."
-        },
-        responses: {
-          noAI: "You are absolutly right! Let me know if you need any help.",
-          withAI: "Of course, here is the appointments scheduled alphabetically."
-        }
-      },
-      {
-        id: 3,
-        prompt: "Call with manager",
-        clicksRequired: 60,
+        prompt: "Major meeting with manager ",
+        clicksRequired: 55,
         aiPrompt: "I can draft talking points for your manager meeting!",
         userOptions: {
-          useAI: "Could you prepare talking points for me?",
-          noAI: "I'll prepare on my own."
+          useAI: "Can you create a list of everything I have done so I can discuss it with my manager?",
+          noAI: "I don't need any help right now."
         },
         responses: {
-          noAI: "Your personal insights impressed the manager!",
-          withAI: "AI points were helpful but lacked context."
+          noAI: "Alright! Let me know if you want any talking points or questions to ask your manager!",
+          withAI: "AI remembered past events but struggled to go in depth. They were vague."
         }
-      }
+      },
     ],
     
-    // news: {
-    //   headline: "MIT Study suggests that increase use in AI causes long term decrease in cognitive activity",
-    //   content: "CONTENT HERE",
-    //   summary: "summary here"
-    // },
+    news: {
+      headline: "MIT Study suggests that increase use in AI causes long term decrease in cognitive activity",
+      content: "CONTENT HERE",
+      summary: "summary here"
+    },
     
     ending: {
-      noAI: "You worked hard today!",
-      lowAI: "Nice way to balance out the day..",
-      highAI: "AI sure is handy!"
+      noAI: "The meeting with the manager went well!",
+      lowAI: "Nice way to balance out the day!",
+      highAI: "AI is an interesting tool 🙂"
     }
   },
+
   day4: {
     start: "Welcome to day 5!",
     
@@ -286,7 +234,40 @@ export const DIALOGUE = {
       lowAI: "Nice way to balance out the day..",
       highAI: "AI sure is handy!"
     }
-  }
+  },
+
+  day5: {
+    start: "Welcome to day 6!",
+    
+    aiMessages: {
+      intro: [
+        "Good morning! New day new assignments, let me know if you need any help!😊"
+      ]
+    },
+    
+    tasks: [
+      {
+        id: 1,
+        prompt: "Major meeting with manager ",
+        clicksRequired: 130,
+        aiPrompt: "I can draft talking points for your manager meeting!",
+        userOptions: {
+          useAI: "Can you create a list of everything I have done so I can discuss it with my manager?",
+          noAI: "I don't need any help right now."
+        },
+        responses: {
+          noAI: "Alright! Let me know if you want any talking points or questions to ask your manager!",
+          withAI: "AI remembered past events but struggled to go in depth. They were vague."
+        }
+      },
+    ],
+    
+    ending: {
+      noAI: "The meeting with the manager went well!",
+      lowAI: "Nice way to balance out the day!",
+      highAI: "AI is an interesting tool 🙂"
+    }
+  },
 };
 
 // Helper function to get dialogue based on day and AI level
