@@ -10,7 +10,7 @@ export default function Home() {
   const [aiLevel, setAiLevel] = useState(0);
   const [position, setPosition] = useState(0); // Track promotion level: 0 = Assistant, 1 = Admin Assistant, 2 = Senior Admin Assistant
   const [justPromoted, setJustPromoted] = useState(false); // Track if promotion happened this congratulations stage
-  const [stage, setStage] = useState('start'); // start, task-selection, task, clicking, response, congratulations, news, ending, rest
+  const [stage, setStage] = useState('start'); // start, task-selection, task, clicking, response, congratulations, news, ending, supervisor-scene, rest
   const [displayedMessages, setDisplayedMessages] = useState([]);
   const [showChoices, setShowChoices] = useState(false);
   const [showDialogue, setShowDialogue] = useState(true);
@@ -173,10 +173,11 @@ export default function Home() {
     } else {
       // All tasks done for this day, check for promotions
       let promoted = false;
-      if (position === 1 && (aiLevel >= 5 || day >= 6)) {
+      // i think the day is weird and so if you want them to be promoted at the end of day 3 you write 2.
+      if (position === 1 && (aiLevel >= 5 || day >= 5)) {
         setPosition(2);
         promoted = true;
-      } else if (position === 0 && (aiLevel >= 3 || day >= 3)) {
+      } else if (position === 0 && (aiLevel >= 3 || day >= 2)) {
         setPosition(1);
         promoted = true;
       }
@@ -191,8 +192,10 @@ export default function Home() {
     if (currentDayData?.news) {
       setStage('news');
     } else {
-      // No news for this day, skip directly to rest or ending
-      if (day + 1 < GAME_CONFIG.totalDays) {
+      // No news for this day, check if we need to show supervisor scene
+      if (day === 3) { // Day 4 (index 3)
+        setStage('supervisor-scene');
+      } else if (day + 1 < GAME_CONFIG.totalDays) {
         setStage('rest');
       } else {
         setStage('ending');
@@ -201,11 +204,21 @@ export default function Home() {
   };
 
   const handleNewsNext = () => {
-    if (day + 1 < GAME_CONFIG.totalDays) {
+    if (day === 3) { // Day 4 (index 3)
+      setStage('supervisor-scene');
+    } else if (day + 1 < GAME_CONFIG.totalDays) {
       // Move to rest stage before next day
       setStage('rest');
     } else {
       // All days complete
+      setStage('ending');
+    }
+  };
+
+  const handleSupervisorSceneNext = () => {
+    if (day + 1 < GAME_CONFIG.totalDays) {
+      setStage('rest');
+    } else {
       setStage('ending');
     }
   };
@@ -493,6 +506,23 @@ export default function Home() {
                         onClick={handleNewsNext} 
                         className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-xl w-full flex-shrink-0"
                       >
+                        Continue
+                      </button>
+                    </div>
+                  )}
+
+                  {/* SUPERVISOR SCENE STAGE */}
+                  {stage === 'supervisor-scene' && (
+                    <div className="flex-1 flex flex-col items-center justify-center">
+                      <h2 className="text-2xl font-bold text-black mb-4">
+                        {position === 2 ? 'Oh no!' : 'Uh oh...'}
+                      </h2>
+                      <p className="text-black text-lg mb-6 text-center">
+                        {position === 2 
+                          ? 'Reprimanded by supervisor for sending wrong links' 
+                          : 'Your manager is worried about your efficiency.'}
+                      </p>
+                      <button onClick={handleSupervisorSceneNext} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl">
                         Continue
                       </button>
                     </div>
