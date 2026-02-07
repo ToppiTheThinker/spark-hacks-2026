@@ -8,7 +8,8 @@ export default function Home() {
   const [day, setDay] = useState(0);
   const [taskIndex, setTaskIndex] = useState(0);
   const [aiLevel, setAiLevel] = useState(0);
-  const [stage, setStage] = useState('start'); // start, task-selection, task, clicking, response, congratulations, news, ending
+  const [position, setPosition] = useState(0); // Track promotion level: 0 = Assistant, 1 = Admin Assistant, 2 = Senior Admin Assistant
+  const [stage, setStage] = useState('start'); // start, task-selection, task, clicking, response, congratulations, news, ending, rest
   const [displayedMessages, setDisplayedMessages] = useState([]);
   const [showChoices, setShowChoices] = useState(false);
   const [showDialogue, setShowDialogue] = useState(true);
@@ -26,17 +27,24 @@ export default function Home() {
   
   // Get congratulations message based on AI level
   const getCongratulationsMessage = () => {
-    if (aiLevel >= 5) {
+    // Check for Senior Administrative Assistant promotion (position 2)
+    if (position === 1 && (aiLevel >= 5 || day >= 5)) {
+      setPosition(2);
       return {
         title: 'Congratulations!',
         message: 'Management is extremely impressed with your efficiency and you have been promoted to Senior Administrative Assistant!'
       };
-    } else if (aiLevel >= 3) {
+    } 
+    // Check for Administrative Assistant promotion (position 1)
+    else if (position === 0 && (aiLevel >= 3 || day >= 3)) {
+      setPosition(1);
       return {
         title: 'Congratulations!',
         message: 'Management is impressed with your performance and you have been promoted to Administrative Assistant!'
       };
-    } else {
+    } 
+    // No promotion
+    else {
       return {
         title: 'Nice job!',
         message: 'You finished all of your tasks.'
@@ -175,29 +183,46 @@ export default function Home() {
   };
 
   const handleCongratulationsNext = () => {
-    setStage('news');
+    // Check if current day has news, if not skip to rest/ending
+    if (currentDayData?.news) {
+      setStage('news');
+    } else {
+      // No news for this day, skip directly to rest or ending
+      if (day + 1 < GAME_CONFIG.totalDays) {
+        setStage('rest');
+      } else {
+        setStage('ending');
+      }
+    }
   };
 
   const handleNewsNext = () => {
     if (day + 1 < GAME_CONFIG.totalDays) {
-      // Move to next day
-      setDay(day + 1);
-      setTaskIndex(0);
-      setTaskOrder([]);
-      setCompletedTasks([]);
-      setShowNewsSummary(false);
-      setShowSummaryChoice(false);
-      setStage('start');
+      // Move to rest stage before next day
+      setStage('rest');
     } else {
       // All days complete
       setStage('ending');
     }
   };
 
+  const handleStartNextDay = () => {
+    // Move to next day from rest
+    setDay(day + 1);
+    setTaskIndex(0);
+    setTaskOrder([]);
+    setCompletedTasks([]);
+    setShowNewsSummary(false);
+    setShowSummaryChoice(false);
+    setShowSparky(false);
+    setStage('start');
+  };
+
   const handleReset = () => {
     setDay(0);
     setTaskIndex(0);
     setAiLevel(0);
+    setPosition(0);
     setStage('start');
     setDisplayedMessages([]);
     setShowChoices(false);
@@ -218,14 +243,20 @@ export default function Home() {
     <div className="flex flex-col h-screen font-sans background3">
       <div className="flex flex-1 overflow-hidden">
         
-        {/* AI Sidebar - only show when showSparky is true */}
-        {showSparky ? (
+        {/* AI Sidebar - only show when showSparky is true and not in rest stage */}
+        {(showSparky && stage !== 'rest') ? (
         <div className="w-1/3 flex flex-col rounded-3xl p-6 m-6 relative" style={{ backgroundColor: '#EEE2DF' }}>
           {/* Sparky Banner */}
           <div className="absolute -top-3 left-0 right-0 bg-blue-500 rounded-3xl py-4 px-6 shadow-lg z-10 flex items-center gap-4">
             {/* Profile Picture */}
-            <div className="w-14 h-14 rounded-full bg-white flex-shrink-0 flex items-center justify-center">
-              <div className="w-12 h-12 rounded-full bg-blue-300"></div>
+            <div className="w-14 h-14 rounded-full bg-white flex-shrink-0 flex items-center justify-center overflow-hidden">
+              <Image 
+                src="/flame.png" 
+                alt="spArkI" 
+                width={64}
+                height={64}
+                className="object-cover"
+              />
             </div>
             {/* Name and Description */}
             <div className="flex-1">
@@ -299,17 +330,25 @@ export default function Home() {
           </div>
         </div>
         ) : (
-        /* Placeholder Window when Sparky is hidden */
-        <div className="w-1/3 flex flex-col rounded-3xl p-6 m-6 bg-gray-100">
-          <div className="flex-1 flex items-center justify-center">
-            <p className="text-gray-400 text-center">Window Placeholder</p>
+        /* Placeholder Window when Sparky is hidden (including during rest) */
+        <div className="w-1/3 flex flex-col rounded-3xl p-6 m-6 relative overflow-hidden" style={{ backgroundColor: stage === 'rest' ? '#5B61B2' : '#BBBEE8' }}>
+          <div className="flex-1 flex items-center justify-center" style={{ marginTop: '-240px' }}>
+            {/* Window - changes color during rest */}
+            <div className="w-64 h-80 rounded-2xl border-8 border-white relative" style={{ backgroundColor: stage === 'rest' ? '#001B30' : '#ADDCFF' }}>
+              {/* Horizontal divider line across the middle */}
+              <div className="absolute left-0 right-0 top-1/2 h-2 bg-white transform -translate-y-1/2"></div>
+              {/* Vertical divider line down the middle */}
+              <div className="absolute top-0 bottom-0 left-1/2 w-2 bg-white transform -translate-x-1/2"></div>
+            </div>
           </div>
+          {/* Desk */}
+          <div className="absolute bottom-0 left-0 right-0 w-full h-48" style={{ backgroundColor: '#EEE2DF', borderRadius: '1.5rem 1.5rem 1.5rem 1.5rem' }}></div>
         </div>
         )}
         
         {/* Main Area */}
         <div className="flex flex-1 pr-8 m-6">
-          <main className="flex flex-1 flex-col items-center rounded-3xl relative overflow-hidden" style={{ backgroundColor: '#BBBEE8' }}>
+          <main className="flex flex-1 flex-col items-center rounded-3xl relative overflow-hidden" style={{ backgroundColor: stage === 'rest' ? '#5B61B2' : '#BBBEE8' }}>
             
             {/* Desktop with Overlay */}
             <div className="relative flex-1 w-full flex items-center justify-center py-8 px-8">
@@ -323,8 +362,20 @@ export default function Home() {
                   style={{ transform: 'scale(1.2)' }} 
                 />
                 
-                {/* Dialogue Box - only show when showDialogue is true */}
-                {showDialogue && (
+                {/* Rest Stage Overlay - show "Enjoy your rest!" message */}
+                {stage === 'rest' && (
+                  <div className="absolute inset-0 flex items-center justify-center" style={{ top: '-145px' }}>
+                    <div className="flex flex-col items-center justify-center">
+                      <h2 className="text-4xl font-bold text-gray-800 mb-8">Enjoy your rest!</h2>
+                      <button onClick={handleStartNextDay} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-xl">
+                        Start Day {day + 2}
+                      </button>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Dialogue Box - only show when showDialogue is true and not in rest */}
+                {(showDialogue && stage !== 'rest') && (
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ top: '-145px', scale: '1.12' }}>
                     <div className="w-3/4 max-w-md pointer-events-auto backdrop-blur-sm shadow-2xl p-8 flex flex-col" style={{ minHeight: '32vh', maxHeight: '32vh', backgroundColor: '#EEE2DF' }}>
                   
