@@ -557,7 +557,7 @@ export default function Home() {
                   {stage === 'supervisor-scene' && (
                     <div className="flex-1 flex flex-col items-center justify-center">
                       <h2 className="text-2xl font-bold text-black mb-4">
-                        {position === 2 ? 'Oh no!' : 'Uh oh...'}
+                        {position === 2 ? 'Oh no!' : 'Great work!'}
                       </h2>
                       <p className="text-black text-lg mb-6 text-center">
                         {position === 2 

@@ -62,7 +62,7 @@ export const DIALOGUE = {
           noAI: "I'll handle it myself."
         },
         responses: {
-          noAI: "No worries! Let me know if you need anything!",
+          noAI: "All good! Let me know if you need anything!",
           withAI: "Done! That wasn't too hard!"
         }
       },
@@ -164,7 +164,7 @@ export const DIALOGUE = {
         },
         responses: {
           noAI: "Alright! Let me know if you want any talking points or questions to ask your manager!",
-          withAI: "AI remembered past events but struggled to go in depth. They were vague."
+          withAI: "Here are some points from our previous conversations that you should bring up to your manager!"
         }
       },
     ],
@@ -256,7 +256,7 @@ export const DIALOGUE = {
         },
         responses: {
           noAI: "Alright! Let me know if you want any talking points or questions to ask your manager!",
-          withAI: "AI remembered past events but struggled to go in depth. They were vague."
+          withAI: "From our previous conversations, hope these talking points get you a promotion!"
         }
       },
     ],
