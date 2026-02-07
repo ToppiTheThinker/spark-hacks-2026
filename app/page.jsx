@@ -8,6 +8,7 @@ export default function Home() {
   const [day, setDay] = useState(0);
   const [taskIndex, setTaskIndex] = useState(0);
   const [aiLevel, setAiLevel] = useState(0);
+  const [position, setPosition] = useState(0); // Track promotion level: 0 = Assistant, 1 = Admin Assistant, 2 = Senior Admin Assistant
   const [stage, setStage] = useState('start'); // start, task-selection, task, clicking, response, congratulations, news, ending, rest
   const [displayedMessages, setDisplayedMessages] = useState([]);
   const [showChoices, setShowChoices] = useState(false);
@@ -26,17 +27,24 @@ export default function Home() {
   
   // Get congratulations message based on AI level
   const getCongratulationsMessage = () => {
-    if (aiLevel >= 5) {
+    // Check for Senior Administrative Assistant promotion (position 2)
+    if (position === 1 && (aiLevel >= 5 || day >= 5)) {
+      setPosition(2);
       return {
         title: 'Congratulations!',
         message: 'Management is extremely impressed with your efficiency and you have been promoted to Senior Administrative Assistant!'
       };
-    } else if (aiLevel >= 3) {
+    } 
+    // Check for Administrative Assistant promotion (position 1)
+    else if (position === 0 && (aiLevel >= 3 || day >= 3)) {
+      setPosition(1);
       return {
         title: 'Congratulations!',
         message: 'Management is impressed with your performance and you have been promoted to Administrative Assistant!'
       };
-    } else {
+    } 
+    // No promotion
+    else {
       return {
         title: 'Nice job!',
         message: 'You finished all of your tasks.'
@@ -214,6 +222,7 @@ export default function Home() {
     setDay(0);
     setTaskIndex(0);
     setAiLevel(0);
+    setPosition(0);
     setStage('start');
     setDisplayedMessages([]);
     setShowChoices(false);
