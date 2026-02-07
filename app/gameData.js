@@ -4,7 +4,7 @@
 
 
 export const GAME_CONFIG = {
-  totalDays: 2,
+  totalDays: 3,
   tasksPerDay: 3,
 };
 
@@ -30,8 +30,8 @@ export const DIALOGUE = {
           noAI: "I'll do it myself."
         },
         responses: {
-          noAI: "Great job doing it yourself!",
-          withAI: "AI helped, but it felt generic."
+          noAI: "No worries! Let me know if you need anything!",
+          withAI: "On it!"
         }
       }
     ],
@@ -69,8 +69,8 @@ export const DIALOGUE = {
           noAI: "I'll handle it myself."
         },
         responses: {
-          noAI: "Great attention to detail!",
-          withAI: "AI helped, but it felt generic."
+          noAI: "No worries! Let me know if you need anything!",
+          withAI: "On it!"
         }
       },
       {
@@ -90,15 +90,83 @@ export const DIALOGUE = {
     ],
     
     news: {
-      headline: "More News Coming Soon",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit with new developments. Excepteur sint occaecat cupidatat non proident in the latest updates."
+      headline: "75% of workers admit to relying on AI for work.",
+      content: "CONTENT HERE",
+      summary: "summary here"
     },
     
     ending: {
       noAI: "You built genuine connections!",
       lowAI: "Balanced approach today.",
-      highAI: "AI helped, but at what cost?"
+      highAI: "AI sure is handy!"
+    }
+  },
+  
+  day2: {
+    start: "Welcome to day 3!",
+    
+    aiMessages: {
+      intro: [
+        "Good morning! Another day, another opportunity to make your work easier! Let me know what you need help with!😊"
+      ]
+    },
+    
+    tasks: [
+      {
+        id: 1,
+        prompt: "Schedule appointments",
+        clicksRequired: 35,
+        aiPrompt: "I can coordinate all those appointments for you if you'd like!",
+        userOptions: {
+          useAI: "Could you schedule these appointments for me?",
+          noAI: "I'll schedule them myself."
+        },
+        responses: {
+          noAI: "You created a well-organized schedule!",
+          withAI: "AI scheduled them, but missed some preferences."
+        }
+      },
+      {
+        id: 2,
+        prompt: "Call with manager",
+        clicksRequired: 40,
+        aiPrompt: "I can draft talking points for your manager meeting!",
+        userOptions: {
+          useAI: "Could you prepare talking points for me?",
+          noAI: "I'll prepare on my own."
+        },
+        responses: {
+          noAI: "Your personal insights impressed the manager!",
+          withAI: "AI points were helpful but lacked context."
+        }
+      },
+      {
+        id: 3,
+        prompt: "Create task lists",
+        clicksRequired: 35,
+        aiPrompt: "I can organize and prioritize your tasks instantly!",
+        userOptions: {
+          useAI: "Could you create task lists for me?",
+          noAI: "I'll organize them myself."
+        },
+        responses: {
+          noAI: "Your prioritization shows great judgment!",
+          withAI: "AI organized them, but missed key priorities."
+        }
+      }
+    ],
+    
+    news: {
+      headline: "Companies Report 40% Productivity Increase with AI Assistants",
+      content: "Major corporations across industries are reporting significant productivity gains after implementing AI assistant tools for their workforce. The technology has transformed how employees handle routine tasks, from scheduling to document preparation. However, some managers express concerns about over-reliance and the potential loss of critical thinking skills. Studies show that while AI can complete tasks faster, human oversight remains essential for quality and context-appropriate decisions.",
+      summary: "AI assistants are boosting workplace productivity by 40%, though experts warn about maintaining human judgment and oversight in decision-making processes."
+    },
+    
+    ending: {
+      noAI: "Congratulations! Your dedication and personal touch have earned you a promotion to Administrative Assistant!",
+      lowAI: "Great work! Your balanced approach has earned you a promotion to Administrative Assistant!",
+      highAI: "You've completed your training! You've been promoted to Administrative Assistant. Remember to bring your own skills to the role!",
+      promotion: true
     }
   }
 };
