@@ -9,6 +9,7 @@ export default function Home() {
   const [taskIndex, setTaskIndex] = useState(0);
   const [aiLevel, setAiLevel] = useState(0);
   const [position, setPosition] = useState(0); // Track promotion level: 0 = Assistant, 1 = Admin Assistant, 2 = Senior Admin Assistant
+  const [justPromoted, setJustPromoted] = useState(false); // Track if promotion happened this congratulations stage
   const [stage, setStage] = useState('start'); // start, task-selection, task, clicking, response, congratulations, news, ending, rest
   const [displayedMessages, setDisplayedMessages] = useState([]);
   const [showChoices, setShowChoices] = useState(false);
@@ -27,12 +28,12 @@ export default function Home() {
   
   // Get congratulations message based on current position
   const getCongratulationsMessage = () => {
-    if (position === 2) {
+    if (justPromoted && position === 2) {
       return {
         title: 'Congratulations!',
         message: 'Management is extremely impressed with your efficiency and you have been promoted to Senior Administrative Assistant!'
       };
-    } else if (position === 1) {
+    } else if (justPromoted && position === 1) {
       return {
         title: 'Congratulations!',
         message: 'Management is impressed with your performance and you have been promoted to Administrative Assistant!'
@@ -171,11 +172,15 @@ export default function Home() {
       setStage('task-selection');
     } else {
       // All tasks done for this day, check for promotions
+      let promoted = false;
       if (position === 1 && (aiLevel >= 5 || day >= 5)) {
         setPosition(2);
+        promoted = true;
       } else if (position === 0 && (aiLevel >= 3 || day >= 3)) {
         setPosition(1);
+        promoted = true;
       }
+      setJustPromoted(promoted);
       // Show congratulations
       setStage('congratulations');
     }
@@ -214,6 +219,7 @@ export default function Home() {
     setShowNewsSummary(false);
     setShowSummaryChoice(false);
     setShowSparky(false);
+    setJustPromoted(false); // Reset promotion flag for new day
     setStage('start');
   };
 
@@ -222,6 +228,7 @@ export default function Home() {
     setTaskIndex(0);
     setAiLevel(0);
     setPosition(0);
+    setJustPromoted(false);
     setStage('start');
     setDisplayedMessages([]);
     setShowChoices(false);
