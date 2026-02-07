@@ -197,7 +197,6 @@ export default function Home() {
       setStage('task-selection');
     } else {
       // All tasks done for this day, check for promotions
-      let promoted = false;
       if (position === 1 && (aiLevel >= 5 || day >= 6)) {
         setPosition(2);
         promoted = true;
