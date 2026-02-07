@@ -51,9 +51,8 @@ export default function Home() {
     if (stage === 'start') {
       return currentDayData.aiMessages.intro;
     } else if (stage === 'task') {
-      // Get the prompt index based on the current task ID
-      const taskPromptIndex = currentTaskId - 1;
-      return [currentDayData.aiMessages.taskPrompts[taskPromptIndex]];
+      // Get the AI prompt from the current task
+      return currentTask?.aiPrompt ? [currentTask.aiPrompt] : [];
     }
     return [];
   };
@@ -126,7 +125,7 @@ export default function Home() {
 
   const handleChoice = (usedAI) => {
     // Add user's choice as a message
-    const userMessage = usedAI ? "Can you help me with this?" : "I'll handle this myself.";
+    const userMessage = usedAI ? currentTask.userOptions.useAI : currentTask.userOptions.noAI;
     setDisplayedMessages(prev => [...prev, userMessage]);
     setShowChoices(false);
     
@@ -245,8 +244,8 @@ export default function Home() {
               }
               
               // Check if this is a user message
-              const isUserMessage = message === "Can you help me with this?" || 
-                                    message === "I'll handle this myself." ||
+              const isUserMessage = message === currentTask?.userOptions?.useAI || 
+                                    message === currentTask?.userOptions?.noAI ||
                                     message === "Yes, please!" ||
                                     message === "No, I'll read the full article.";
               
@@ -263,19 +262,19 @@ export default function Home() {
             })}
             
             {/* Choice buttons - appear at bottom right */}
-            {showChoices && stage === 'task' && (
+            {showChoices && stage === 'task' && currentTask && (
               <div className="flex flex-col gap-2 self-end ml-12 mt-2">
                 <button 
                   onClick={() => handleChoice(true)} 
                   className="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-3xl shadow-sm transition-colors animate-fade-in"
                 >
-                  Can you help me with this?
+                  {currentTask.userOptions.useAI}
                 </button>
                 <button 
                   onClick={() => handleChoice(false)} 
                   className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-3xl shadow-sm transition-colors animate-fade-in"
                 >
-                  I'll handle this myself.
+                  {currentTask.userOptions.noAI}
                 </button>
               </div>
             )}

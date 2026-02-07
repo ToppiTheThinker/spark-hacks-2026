@@ -16,9 +16,6 @@ export const DIALOGUE = {
       intro: [
         "Welcome to your first day as an assistant! My name is spArkI and I'm your assigned AI chatbot.😊",
         "I'm here to help you with any tasks you need assistance with. Just let me know if you'd like me to handle anything!"
-      ],
-      taskPrompts: [
-        "I can help you proofread that email if you'd like!"
       ]
     },
     
@@ -27,6 +24,11 @@ export const DIALOGUE = {
         id: 1,
         prompt: "Proofread email",
         clicksRequired: 20,
+        aiPrompt: "Where should we start?",
+        userOptions: {
+          useAI: "Could you proofread this email for me?",
+          noAI: "I'll do it myself."
+        },
         responses: {
           noAI: "Great job doing it yourself!",
           withAI: "AI helped, but it felt generic."
@@ -53,10 +55,6 @@ export const DIALOGUE = {
     aiMessages: {
       intro: [
         "Good morning! Ready for another day? I'm here to help with whatever you need!😊"
-      ],
-      taskPrompts: [
-        "I can help you proofread that email if you'd like!",
-        "Want me to generate a presentation for you? It'll be quick!"
       ]
     },
     
@@ -65,6 +63,11 @@ export const DIALOGUE = {
         id: 1,
         prompt: "Proofread email",
         clicksRequired: 30,
+        aiPrompt: "I see you have an email to send. Need a hand?",
+        userOptions: {
+          useAI: "Could you proofread this email for me?",
+          noAI: "I'll handle it myself."
+        },
         responses: {
           noAI: "Great attention to detail!",
           withAI: "AI helped, but it felt generic."
@@ -74,6 +77,11 @@ export const DIALOGUE = {
         id: 2,
         prompt: "Create presentation",
         clicksRequired: 30,
+        aiPrompt: "I can whip up a presentation in no time!",
+        userOptions: {
+          useAI: "Could you generate a presentation for me?",
+          noAI: "I'll create it myself."
+        },
         responses: {
           noAI: "Your unique perspective shines!",
           withAI: "AI slides lack personal touch."
