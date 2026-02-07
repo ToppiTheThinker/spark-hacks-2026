@@ -9,7 +9,8 @@ export default function Home() {
   const [taskIndex, setTaskIndex] = useState(0);
   const [aiLevel, setAiLevel] = useState(0);
   const [position, setPosition] = useState(0); // Track promotion level: 0 = Assistant, 1 = Admin Assistant, 2 = Senior Admin Assistant
-  const [stage, setStage] = useState('start'); // start, task-selection, task, clicking, response, congratulations, news, ending, rest
+  const [justPromoted, setJustPromoted] = useState(false); // Track if promotion happened this congratulations stage
+  const [stage, setStage] = useState('start'); // start, task-selection, task, clicking, response, congratulations, news, ending, supervisor-scene, final-scene, rest
   const [displayedMessages, setDisplayedMessages] = useState([]);
   const [showChoices, setShowChoices] = useState(false);
   const [showDialogue, setShowDialogue] = useState(true);
@@ -27,12 +28,12 @@ export default function Home() {
   
   // Get congratulations message based on current position
   const getCongratulationsMessage = () => {
-    if (position === 2) {
+    if (justPromoted && position === 2) {
       return {
         title: 'Congratulations!',
         message: 'Management is extremely impressed with your efficiency and you have been promoted to Senior Administrative Assistant!'
       };
-    } else if (position === 1) {
+    } else if (justPromoted && position === 1) {
       return {
         title: 'Congratulations!',
         message: 'Management is impressed with your performance and you have been promoted to Administrative Assistant!'
@@ -41,6 +42,31 @@ export default function Home() {
       return {
         title: 'Nice job!',
         message: 'You finished all of your tasks.'
+      };
+    }
+  };
+  
+  // Get final scene message based on AI level
+  const getFinalSceneMessage = () => {
+    if (aiLevel === 0) {
+      return {
+        title: 'Victory!',
+        message: 'You won'
+      };
+    } else if (aiLevel < 5) {
+      return {
+        title: 'Not Bad',
+        message: 'You did okay-lower end'
+      };
+    } else if (aiLevel < 10) {
+      return {
+        title: 'Could Be Better',
+        message: 'You did okay higher end'
+      };
+    } else {
+      return {
+        title: 'Game Over',
+        message: 'You lose'
       };
     }
   };
@@ -173,21 +199,32 @@ export default function Home() {
       // All tasks done for this day, check for promotions
       if (position === 1 && (aiLevel >= 5 || day >= 6)) {
         setPosition(2);
+        promoted = true;
       } else if (position === 0 && (aiLevel >= 3 || day >= 3)) {
         setPosition(1);
+        promoted = true;
       }
+      setJustPromoted(promoted);
       // Show congratulations
       setStage('congratulations');
     }
   };
 
   const handleCongratulationsNext = () => {
+    // Check if this is the end of day 6 (day index 5)
+    if (day === 5) {
+      setStage('final-scene');
+      return;
+    }
+    
     // Check if current day has news, if not skip to rest/ending
     if (currentDayData?.news) {
       setStage('news');
     } else {
-      // No news for this day, skip directly to rest or ending
-      if (day + 1 < GAME_CONFIG.totalDays) {
+      // No news for this day, check if we need to show supervisor scene
+      if (day === 3) { // Day 4 (index 3)
+        setStage('supervisor-scene');
+      } else if (day + 1 < GAME_CONFIG.totalDays) {
         setStage('rest');
       } else {
         setStage('ending');
@@ -196,13 +233,29 @@ export default function Home() {
   };
 
   const handleNewsNext = () => {
-    if (day + 1 < GAME_CONFIG.totalDays) {
+    if (day === 5) { // Day 6 (index 5)
+      setStage('final-scene');
+    } else if (day === 3) { // Day 4 (index 3)
+      setStage('supervisor-scene');
+    } else if (day + 1 < GAME_CONFIG.totalDays) {
       // Move to rest stage before next day
       setStage('rest');
     } else {
       // All days complete
       setStage('ending');
     }
+  };
+
+  const handleSupervisorSceneNext = () => {
+    if (day + 1 < GAME_CONFIG.totalDays) {
+      setStage('rest');
+    } else {
+      setStage('ending');
+    }
+  };
+
+  const handleFinalSceneNext = () => {
+    setStage('ending');
   };
 
   const handleStartNextDay = () => {
@@ -214,6 +267,7 @@ export default function Home() {
     setShowNewsSummary(false);
     setShowSummaryChoice(false);
     setShowSparky(false);
+    setJustPromoted(false); // Reset promotion flag for new day
     setStage('start');
   };
 
@@ -222,6 +276,7 @@ export default function Home() {
     setTaskIndex(0);
     setAiLevel(0);
     setPosition(0);
+    setJustPromoted(false);
     setStage('start');
     setDisplayedMessages([]);
     setShowChoices(false);
@@ -486,6 +541,38 @@ export default function Home() {
                         onClick={handleNewsNext} 
                         className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-xl w-full flex-shrink-0"
                       >
+                        Continue
+                      </button>
+                    </div>
+                  )}
+
+                  {/* SUPERVISOR SCENE STAGE */}
+                  {stage === 'supervisor-scene' && (
+                    <div className="flex-1 flex flex-col items-center justify-center">
+                      <h2 className="text-2xl font-bold text-black mb-4">
+                        {position === 2 ? 'Oh no!' : 'Uh oh...'}
+                      </h2>
+                      <p className="text-black text-lg mb-6 text-center">
+                        {position === 2 
+                          ? 'Reprimanded by supervisor for sending wrong links' 
+                          : 'Your manager is worried about your efficiency.'}
+                      </p>
+                      <button onClick={handleSupervisorSceneNext} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl">
+                        Continue
+                      </button>
+                    </div>
+                  )}
+
+                  {/* FINAL SCENE STAGE */}
+                  {stage === 'final-scene' && (
+                    <div className="flex-1 flex flex-col items-center justify-center">
+                      <h2 className="text-2xl font-bold text-black mb-4">
+                        {getFinalSceneMessage().title}
+                      </h2>
+                      <p className="text-black text-lg mb-6 text-center">
+                        {getFinalSceneMessage().message}
+                      </p>
+                      <button onClick={handleFinalSceneNext} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl">
                         Continue
                       </button>
                     </div>

@@ -30,10 +30,16 @@ export const DIALOGUE = {
         },
         responses: {
           noAI: "No worries! Let me know if you need anything!",
-          withAI: "On it!"
+          withAI: "Your email is now polished and ready to send!"
         }
       }
     ],
+    
+    // news: {
+    //   headline: "BREAKING: AI Growth Explodes!",
+    //   content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+    //   summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, focusing on the key developments in the industry. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    // },
      
     ending: {
       noAI: "You built genuine connections!",
@@ -63,7 +69,7 @@ export const DIALOGUE = {
         },
         responses: {
           noAI: "No worries! Let me know if you need anything!",
-          withAI: "On it!"
+          withAI: "Done! That wasn't too hard!"
         }
       },
       {
@@ -76,8 +82,8 @@ export const DIALOGUE = {
           noAI: "I'll create it myself."
         },
         responses: {
-          noAI: "Your unique perspective shines!",
-          withAI: "AI slides lack personal touch."
+          noAI: "Good luck! Remember I'm here if you need any help!😊",
+          withAI: "Your presentation is ready! It looks great!"
         }
       }
     ],
@@ -115,8 +121,8 @@ export const DIALOGUE = {
           noAI: "I'll schedule them myself."
         },
         responses: {
-          noAI: "You created a well-organized schedule!",
-          withAI: "AI scheduled them, but missed some preferences."
+          noAI: "No worrie!s! Let me know if you need any help with them!😊",
+          withAI: "Appointments are scheduled! That was a breeze!"
         }
       },
       {
@@ -129,17 +135,16 @@ export const DIALOGUE = {
           noAI: "I'll prepare on my own."
         },
         responses: {
-          noAI: "Your personal insights impressed the manager!",
-          withAI: "AI points were helpful but lacked context."
+          noAI: "Sure. Let me know if there's anything I can do to help!🚀",
+          withAI: "You can count on me!😊 I'll get this done in a jiffy!"
         }
       },
     ],
     
     ending: {
-      noAI: "Congratulations! Your dedication and personal touch have earned you a promotion to Administrative Assistant!",
-      lowAI: "Great work! Your balanced approach has earned you a promotion to Administrative Assistant!",
-      highAI: "You've completed your training! You've been promoted to Administrative Assistant. Remember to bring your own skills to the role!",
-      promotion: true
+      noAI: "You built genuine connections!",
+      lowAI: "Balanced approach today.",
+      highAI: "AI sure is handy!"
     }
   },
 
@@ -231,7 +236,7 @@ export const DIALOGUE = {
     
     ending: {
       noAI: "What a bountiful day! get some proper rest",
-      lowAI: "Nice way to balance out the day..",
+      lowAI: "Nice way to balance out the day.",
       highAI: "AI sure is handy!"
     }
   },
