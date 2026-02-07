@@ -25,26 +25,19 @@ export default function Home() {
   const currentTaskId = taskOrder[taskIndex];
   const currentTask = currentDayData?.tasks.find(t => t.id === currentTaskId);
   
-  // Get congratulations message based on AI level
+  // Get congratulations message based on current position
   const getCongratulationsMessage = () => {
-    // Check for Senior Administrative Assistant promotion (position 2)
-    if (position === 1 && (aiLevel >= 5 || day >= 5)) {
-      setPosition(2);
+    if (position === 2) {
       return {
         title: 'Congratulations!',
         message: 'Management is extremely impressed with your efficiency and you have been promoted to Senior Administrative Assistant!'
       };
-    } 
-    // Check for Administrative Assistant promotion (position 1)
-    else if (position === 0 && (aiLevel >= 3 || day >= 3)) {
-      setPosition(1);
+    } else if (position === 1) {
       return {
         title: 'Congratulations!',
         message: 'Management is impressed with your performance and you have been promoted to Administrative Assistant!'
       };
-    } 
-    // No promotion
-    else {
+    } else {
       return {
         title: 'Nice job!',
         message: 'You finished all of your tasks.'
@@ -148,7 +141,7 @@ export default function Home() {
   const handleClick = () => {
     // Prevent clicking if already at or over the required amount
     if (clickCount >= currentTask.clicksRequired) return;
-     
+    
     const clickValue = usedAIForTask ? 5 : 1;
     const newClickCount = clickCount + clickValue;
     
@@ -177,7 +170,13 @@ export default function Home() {
       // More tasks to complete, go back to selection
       setStage('task-selection');
     } else {
-      // All tasks done for this day, show congratulations
+      // All tasks done for this day, check for promotions
+      if (position === 1 && (aiLevel >= 5 || day >= 5)) {
+        setPosition(2);
+      } else if (position === 0 && (aiLevel >= 3 || day >= 3)) {
+        setPosition(1);
+      }
+      // Show congratulations
       setStage('congratulations');
     }
   };
@@ -516,9 +515,9 @@ export default function Home() {
       </div>
       
       {/* Debugging Bar */}
-      <div className="mx-6 mb-6 p-6 bg-white rounded-3xl">
+      {/* <div className="mx-6 mb-6 p-6 bg-white rounded-3xl">
         <p className="text-black">Debugging: Day {day} | Stage: {stage} | AI Level: {aiLevel}</p>
-      </div>
+      </div> */}
     </div>
   );
 }
