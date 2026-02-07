@@ -10,7 +10,7 @@ export default function Home() {
   const [aiLevel, setAiLevel] = useState(0);
   const [position, setPosition] = useState(0); // Track promotion level: 0 = Assistant, 1 = Admin Assistant, 2 = Senior Admin Assistant
   const [justPromoted, setJustPromoted] = useState(false); // Track if promotion happened this congratulations stage
-  const [stage, setStage] = useState('start'); // start, task-selection, task, clicking, response, congratulations, news, ending, supervisor-scene, rest
+  const [stage, setStage] = useState('start'); // start, task-selection, task, clicking, response, congratulations, news, ending, supervisor-scene, final-scene, rest
   const [displayedMessages, setDisplayedMessages] = useState([]);
   const [showChoices, setShowChoices] = useState(false);
   const [showDialogue, setShowDialogue] = useState(true);
@@ -42,6 +42,31 @@ export default function Home() {
       return {
         title: 'Nice job!',
         message: 'You finished all of your tasks.'
+      };
+    }
+  };
+  
+  // Get final scene message based on AI level
+  const getFinalSceneMessage = () => {
+    if (aiLevel === 0) {
+      return {
+        title: 'Victory!',
+        message: 'You won'
+      };
+    } else if (aiLevel < 5) {
+      return {
+        title: 'Not Bad',
+        message: 'You did okay-lower end'
+      };
+    } else if (aiLevel < 10) {
+      return {
+        title: 'Could Be Better',
+        message: 'You did okay higher end'
+      };
+    } else {
+      return {
+        title: 'Game Over',
+        message: 'You lose'
       };
     }
   };
@@ -173,11 +198,10 @@ export default function Home() {
     } else {
       // All tasks done for this day, check for promotions
       let promoted = false;
-      // i think the day is weird and so if you want them to be promoted at the end of day 3 you write 2.
-      if (position === 1 && (aiLevel >= 5 || day >= 5)) {
+      if (position === 1 && (aiLevel >= 5 || day >= 6)) {
         setPosition(2);
         promoted = true;
-      } else if (position === 0 && (aiLevel >= 3 || day >= 2)) {
+      } else if (position === 0 && (aiLevel >= 3 || day >= 3)) {
         setPosition(1);
         promoted = true;
       }
@@ -188,6 +212,12 @@ export default function Home() {
   };
 
   const handleCongratulationsNext = () => {
+    // Check if this is the end of day 6 (day index 5)
+    if (day === 5) {
+      setStage('final-scene');
+      return;
+    }
+    
     // Check if current day has news, if not skip to rest/ending
     if (currentDayData?.news) {
       setStage('news');
@@ -204,7 +234,9 @@ export default function Home() {
   };
 
   const handleNewsNext = () => {
-    if (day === 3) { // Day 4 (index 3)
+    if (day === 5) { // Day 6 (index 5)
+      setStage('final-scene');
+    } else if (day === 3) { // Day 4 (index 3)
       setStage('supervisor-scene');
     } else if (day + 1 < GAME_CONFIG.totalDays) {
       // Move to rest stage before next day
@@ -221,6 +253,10 @@ export default function Home() {
     } else {
       setStage('ending');
     }
+  };
+
+  const handleFinalSceneNext = () => {
+    setStage('ending');
   };
 
   const handleStartNextDay = () => {
@@ -519,10 +555,25 @@ export default function Home() {
                       </h2>
                       <p className="text-black text-lg mb-6 text-center">
                         {position === 2 
-                          ? 'Reprimanded by supervisor for submitting work with made-up information.' 
+                          ? 'Reprimanded by supervisor for sending wrong links' 
                           : 'Your manager is worried about your efficiency.'}
                       </p>
                       <button onClick={handleSupervisorSceneNext} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl">
+                        Continue
+                      </button>
+                    </div>
+                  )}
+
+                  {/* FINAL SCENE STAGE */}
+                  {stage === 'final-scene' && (
+                    <div className="flex-1 flex flex-col items-center justify-center">
+                      <h2 className="text-2xl font-bold text-black mb-4">
+                        {getFinalSceneMessage().title}
+                      </h2>
+                      <p className="text-black text-lg mb-6 text-center">
+                        {getFinalSceneMessage().message}
+                      </p>
+                      <button onClick={handleFinalSceneNext} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl">
                         Continue
                       </button>
                     </div>
