@@ -8,7 +8,7 @@ export default function Home() {
   const [day, setDay] = useState(0);
   const [taskIndex, setTaskIndex] = useState(0);
   const [aiLevel, setAiLevel] = useState(0);
-  const [stage, setStage] = useState('start'); // start, task-selection, task, clicking, response, congratulations, news, ending
+  const [stage, setStage] = useState('start'); // start, task-selection, task, clicking, response, congratulations, news, ending, rest
   const [displayedMessages, setDisplayedMessages] = useState([]);
   const [showChoices, setShowChoices] = useState(false);
   const [showDialogue, setShowDialogue] = useState(true);
@@ -175,24 +175,39 @@ export default function Home() {
   };
 
   const handleCongratulationsNext = () => {
-    setStage('news');
+    // Check if current day has news, if not skip to rest/ending
+    if (currentDayData?.news) {
+      setStage('news');
+    } else {
+      // No news for this day, skip directly to rest or ending
+      if (day + 1 < GAME_CONFIG.totalDays) {
+        setStage('rest');
+      } else {
+        setStage('ending');
+      }
+    }
   };
 
   const handleNewsNext = () => {
     if (day + 1 < GAME_CONFIG.totalDays) {
-      // Move to next day
-      setDay(day + 1);
-      setTaskIndex(0);
-      setTaskOrder([]);
-      setCompletedTasks([]);
-      setShowNewsSummary(false);
-      setShowSummaryChoice(false);
-      setShowSparky(false);
-      setStage('start');
+      // Move to rest stage before next day
+      setStage('rest');
     } else {
       // All days complete
       setStage('ending');
     }
+  };
+
+  const handleStartNextDay = () => {
+    // Move to next day from rest
+    setDay(day + 1);
+    setTaskIndex(0);
+    setTaskOrder([]);
+    setCompletedTasks([]);
+    setShowNewsSummary(false);
+    setShowSummaryChoice(false);
+    setShowSparky(false);
+    setStage('start');
   };
 
   const handleReset = () => {
@@ -219,8 +234,8 @@ export default function Home() {
     <div className="flex flex-col h-screen font-sans background3">
       <div className="flex flex-1 overflow-hidden">
         
-        {/* AI Sidebar - only show when showSparky is true */}
-        {showSparky ? (
+        {/* AI Sidebar - only show when showSparky is true and not in rest stage */}
+        {(showSparky && stage !== 'rest') ? (
         <div className="w-1/3 flex flex-col rounded-3xl p-6 m-6 relative" style={{ backgroundColor: '#EEE2DF' }}>
           {/* Sparky Banner */}
           <div className="absolute -top-3 left-0 right-0 bg-blue-500 rounded-3xl py-4 px-6 shadow-lg z-10 flex items-center gap-4">
@@ -306,11 +321,11 @@ export default function Home() {
           </div>
         </div>
         ) : (
-        /* Placeholder Window when Sparky is hidden */
+        /* Placeholder Window when Sparky is hidden (including during rest) */
         <div className="w-1/3 flex flex-col rounded-3xl p-6 m-6 relative overflow-hidden" style={{ backgroundColor: '#BBBEE8' }}>
           <div className="flex-1 flex items-center justify-center" style={{ marginTop: '-240px' }}>
-            {/* Window */}
-            <div className="w-64 h-80 rounded-2xl border-8 border-white relative" style={{ backgroundColor: '#ADDCFF' }}>
+            {/* Window - changes color during rest */}
+            <div className="w-64 h-80 rounded-2xl border-8 border-white relative" style={{ backgroundColor: stage === 'rest' ? '#001B30' : '#ADDCFF' }}>
               {/* Horizontal divider line across the middle */}
               <div className="absolute left-0 right-0 top-1/2 h-2 bg-white transform -translate-y-1/2"></div>
               {/* Vertical divider line down the middle */}
@@ -338,8 +353,20 @@ export default function Home() {
                   style={{ transform: 'scale(1.2)' }} 
                 />
                 
-                {/* Dialogue Box - only show when showDialogue is true */}
-                {showDialogue && (
+                {/* Rest Stage Overlay - show "Enjoy your rest!" message */}
+                {stage === 'rest' && (
+                  <div className="absolute inset-0 flex items-center justify-center" style={{ top: '-145px' }}>
+                    <div className="flex flex-col items-center justify-center">
+                      <h2 className="text-4xl font-bold text-gray-800 mb-8">Enjoy your rest!</h2>
+                      <button onClick={handleStartNextDay} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-xl">
+                        Start Day {day + 2}
+                      </button>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Dialogue Box - only show when showDialogue is true and not in rest */}
+                {(showDialogue && stage !== 'rest') && (
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ top: '-145px', scale: '1.12' }}>
                     <div className="w-3/4 max-w-md pointer-events-auto backdrop-blur-sm shadow-2xl p-8 flex flex-col" style={{ minHeight: '32vh', maxHeight: '32vh', backgroundColor: '#EEE2DF' }}>
                   
