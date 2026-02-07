@@ -322,7 +322,7 @@ export default function Home() {
         </div>
         ) : (
         /* Placeholder Window when Sparky is hidden (including during rest) */
-        <div className="w-1/3 flex flex-col rounded-3xl p-6 m-6 relative overflow-hidden" style={{ backgroundColor: '#BBBEE8' }}>
+        <div className="w-1/3 flex flex-col rounded-3xl p-6 m-6 relative overflow-hidden" style={{ backgroundColor: stage === 'rest' ? '#5B61B2' : '#BBBEE8' }}>
           <div className="flex-1 flex items-center justify-center" style={{ marginTop: '-240px' }}>
             {/* Window - changes color during rest */}
             <div className="w-64 h-80 rounded-2xl border-8 border-white relative" style={{ backgroundColor: stage === 'rest' ? '#001B30' : '#ADDCFF' }}>
@@ -339,7 +339,7 @@ export default function Home() {
         
         {/* Main Area */}
         <div className="flex flex-1 pr-8 m-6">
-          <main className="flex flex-1 flex-col items-center rounded-3xl relative overflow-hidden" style={{ backgroundColor: '#BBBEE8' }}>
+          <main className="flex flex-1 flex-col items-center rounded-3xl relative overflow-hidden" style={{ backgroundColor: stage === 'rest' ? '#5B61B2' : '#BBBEE8' }}>
             
             {/* Desktop with Overlay */}
             <div className="relative flex-1 w-full flex items-center justify-center py-8 px-8">
