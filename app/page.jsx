@@ -1,4 +1,10 @@
 'use client';
+import { Bahianita } from "next/font/google";
+
+const bahianita = Bahianita({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -437,8 +443,8 @@ export default function Home() {
                   {/* START STAGE */}
                   {stage === 'start' && (
                     <div className="flex-1 flex flex-col items-center justify-center">
-                      <h1 className="text-4xl font-bold text-black mb-8">Day {day + 1}</h1>
-                      <button onClick={handleStart} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-xl">
+                      <h1 className={`${bahianita.className} text-6xl font-bold text-black mb-8`}>Day {day + 1}</h1>
+                      <button onClick={handleStart} className={`${bahianita.className} text-l bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-xl`}>
                         Start Shift
                       </button>
                     </div>
@@ -532,7 +538,7 @@ export default function Home() {
                   {/* NEWS STAGE */}
                   {stage === 'news' && currentDayData?.news && (
                     <div className="flex flex-col flex-1 overflow-hidden">
-                      <h2 className="text-lg font-bold text-black mb-3 flex-shrink-0">{currentDayData.news.headline}</h2>
+                      <h2 className={`${bahianita.className} text-4xl font-bold text-black mb-3 flex-shrink-0`}>{currentDayData.news.headline}</h2>
                       <div className="flex-1 overflow-y-auto pr-2 mb-4 min-h-0">
                         <p className="text-sm text-black whitespace-pre-line leading-relaxed">
                           {showNewsSummary ? currentDayData.news.summary : currentDayData.news.content}
@@ -555,8 +561,8 @@ export default function Home() {
                       </h2>
                       <p className="text-black text-lg mb-6 text-center">
                         {position === 2 
-                          ? 'Reprimanded by supervisor for sending wrong links' 
-                          : 'Your manager is worried about your efficiency.'}
+                          ? 'Reprimanded by supervisor for sumbmitting data that doesn\'t exist.' 
+                          : 'Your manager applauds your work ethic!'}
                       </p>
                       <button onClick={handleSupervisorSceneNext} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl">
                         Continue
@@ -603,9 +609,9 @@ export default function Home() {
       </div>
       
       {/* Debugging Bar */}
-      <div className="mx-6 mb-6 p-6 bg-white rounded-3xl">
+      {/* <div className="mx-6 mb-6 p-6 bg-white rounded-3xl">
         <p className="text-black">Debugging: Day {day} | Stage: {stage} | AI Level: {aiLevel}</p>
-      </div>
+      </div> */}
     </div>
   );
 }
