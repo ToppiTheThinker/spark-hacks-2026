@@ -34,12 +34,6 @@ export const DIALOGUE = {
         }
       }
     ],
-    
-    // news: {
-    //   headline: "BREAKING: AI Growth Explodes!",
-    //   content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-    //   summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, focusing on the key developments in the industry. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    // },
      
     ending: {
       noAI: "You built genuine connections!",
@@ -89,9 +83,9 @@ export const DIALOGUE = {
     ],
     
     news: {
-      headline: "75% of workers admit to relying on AI for work.",
-      content: "CONTENT HERE",
-      summary: "summary here"
+      headline: "BREAKING: AI Growth Explodes!",
+      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, focusing on the key developments in the industry. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     },
     
     ending: {
@@ -176,7 +170,7 @@ export const DIALOGUE = {
     ],
     
     news: {
-      headline: "MIT Study suggests that increase use in AI causes long term decrease in cognitive activity",
+      headline: "75% of workers admit to relying on AI for work.",
       content: "CONTENT HERE",
       summary: "summary here"
     },

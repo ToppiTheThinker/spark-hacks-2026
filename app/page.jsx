@@ -50,8 +50,8 @@ export default function Home() {
   const getFinalSceneMessage = () => {
     if (aiLevel === 0) {
       return {
-        title: 'Victory!',
-        message: 'You won'
+        title: 'Congratulations!',
+        message: 'Thanks to your hard work you have been promoted to CEO!'
       };
     } else if (aiLevel < 5) {
       return {
@@ -573,8 +573,8 @@ export default function Home() {
                       <p className="text-black text-lg mb-6 text-center">
                         {getFinalSceneMessage().message}
                       </p>
-                      <button onClick={handleFinalSceneNext} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl">
-                        Continue
+                      <button onClick={handleReset} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl">
+                        Play Again
                       </button>
                     </div>
                   )}
@@ -603,9 +603,9 @@ export default function Home() {
       </div>
       
       {/* Debugging Bar */}
-      {/* <div className="mx-6 mb-6 p-6 bg-white rounded-3xl">
+      <div className="mx-6 mb-6 p-6 bg-white rounded-3xl">
         <p className="text-black">Debugging: Day {day} | Stage: {stage} | AI Level: {aiLevel}</p>
-      </div> */}
+      </div>
     </div>
   );
 }
