@@ -420,7 +420,7 @@ export default function Home() {
                   width={800} 
                   height={600} 
                   className="object-contain" 
-                  style={{ transform: 'scale(1.2)' }} 
+                  style={{ transform: 'scale(1.5)' }} 
                 />
                 
                 {/* Rest Stage Overlay - show "Enjoy your rest!" message */}
@@ -437,8 +437,8 @@ export default function Home() {
                 
                 {/* Dialogue Box - only show when showDialogue is true and not in rest */}
                 {(showDialogue && stage !== 'rest') && (
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ top: '-145px', scale: '1.12' }}>
-                    <div className="w-3/4 max-w-md pointer-events-auto backdrop-blur-sm shadow-2xl p-8 flex flex-col" style={{ minHeight: '32vh', maxHeight: '32vh', backgroundColor: '#EEE2DF' }}>
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none rounded-l" style={{ top: '-180px', scale: '1.39' }}>
+                    <div className="w-3/4 max-w-md pointer-events-auto backdrop-blur-sm p-8 flex flex-col" style={{ minHeight: '32vh', maxHeight: '32vh', backgroundColor: '#EEE2DF' }}>
                   
                   {/* START STAGE */}
                   {stage === 'start' && (
@@ -479,7 +479,7 @@ export default function Home() {
                     <div className="flex-1 flex flex-col items-center justify-center">
                       <div className="text-sm text-gray-500 mb-4">Task {completedTasks.length}/{currentDayData?.tasks.length || 0}</div>
                       <p className="text-black text-lg mb-6">{currentTask.prompt}</p>
-                      <p className="text-gray-600 text-sm italic">Choose an option in the spArkI chat →</p>
+                      <p className="text-gray-600 text-sm italic">Choose an option in the spArkI chat!</p>
                     </div>
                   )}
 
@@ -540,7 +540,7 @@ export default function Home() {
                     <div className="flex flex-col flex-1 overflow-hidden">
                       <h2 className={`${bahianita.className} text-4xl font-bold text-black mb-3 flex-shrink-0`}>{currentDayData.news.headline}</h2>
                       <div className="flex-1 overflow-y-auto pr-2 mb-4 min-h-0">
-                        <p className="text-sm text-black whitespace-pre-line leading-relaxed">
+                        <p className="text-xs text-black whitespace-pre-line leading-relaxed">
                           {showNewsSummary ? currentDayData.news.summary : currentDayData.news.content}
                         </p>
                       </div>
