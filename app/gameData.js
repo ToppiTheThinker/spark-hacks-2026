@@ -30,7 +30,7 @@ export const DIALOGUE = {
         },
         responses: {
           noAI: "No worries! Let me know if you need anything!",
-          withAI: "On it!"
+          withAI: "Your email is now polished and ready to send!"
         }
       }
     ],
@@ -69,7 +69,7 @@ export const DIALOGUE = {
         },
         responses: {
           noAI: "No worries! Let me know if you need anything!",
-          withAI: "On it!"
+          withAI: "Done! That wasn't too hard!"
         }
       },
       {
@@ -82,8 +82,8 @@ export const DIALOGUE = {
           noAI: "I'll create it myself."
         },
         responses: {
-          noAI: "Your unique perspective shines!",
-          withAI: "AI slides lack personal touch."
+          noAI: "Good luck! Remember I'm here if you need any help!😊",
+          withAI: "Your presentation is ready! It looks great!"
         }
       }
     ],
@@ -121,8 +121,8 @@ export const DIALOGUE = {
           noAI: "I'll schedule them myself."
         },
         responses: {
-          noAI: "You created a well-organized schedule!",
-          withAI: "AI scheduled them, but missed some preferences."
+          noAI: "No worrie!s! Let me know if you need any help with them!😊",
+          withAI: "Appointments are scheduled! That was a breeze!"
         }
       },
       {
@@ -135,8 +135,8 @@ export const DIALOGUE = {
           noAI: "I'll prepare on my own."
         },
         responses: {
-          noAI: "Your personal insights impressed the manager!",
-          withAI: "AI points were helpful but lacked context."
+          noAI: "Sure. Let me know if there's anything I can do to help!🚀",
+          withAI: "You can count on me!😊 I'll get this done in a jiffy!"
         }
       },
       // {
@@ -162,10 +162,9 @@ export const DIALOGUE = {
     // },
     
     ending: {
-      noAI: "Congratulations! Your dedication and personal touch have earned you a promotion to Administrative Assistant!",
-      lowAI: "Great work! Your balanced approach has earned you a promotion to Administrative Assistant!",
-      highAI: "You've completed your training! You've been promoted to Administrative Assistant. Remember to bring your own skills to the role!",
-      promotion: true
+      noAI: "You built genuine connections!",
+      lowAI: "Balanced approach today.",
+      highAI: "AI sure is handy!"
     }
   },
 
@@ -283,7 +282,7 @@ export const DIALOGUE = {
     
     ending: {
       noAI: "What a bountiful day! get some proper rest",
-      lowAI: "Nice way to balance out the day..",
+      lowAI: "Nice way to balance out the day.",
       highAI: "AI sure is handy!"
     }
   }
